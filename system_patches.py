@@ -5,6 +5,9 @@ import subprocess
 # Read host config
 import config
 
+for key, value in config.hosts.items():
+    print(key, value)
+
 #print('Hosts: 0: all hosts', hosts)
 print('Hosts: 0: all hosts', config.hosts)
 config.select_host = int(input('Please select a host: '))
