@@ -3,8 +3,6 @@ import os
 import subprocess
 
 # Read host config
-#. config.cfg
-#config  = open('config.cfg', 'r')
 import config
 
 #print('Hosts: 0: all hosts', hosts)
@@ -13,7 +11,7 @@ config.select_host = int(input('Please select a host: '))
 
 while True:
 
-    print('Task: \n1 Ping \n2 Check open updates \n3 Append updates \n4 Reboot \n5 Quit')
+    print('\nTask: \n1 Ping \n2 Check open updates \n3 Append updates \n4 Reboot \n5 Quit')
     select_task = int(input('\n\nPlease select a task: '))
 
     def check_ping():
