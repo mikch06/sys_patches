@@ -9,7 +9,8 @@ for key, value in config.hosts.items():
     print(key, value)
 
 #print('Hosts: 0: all hosts', hosts)
-print('Hosts: 0: all hosts', config.hosts)
+#print('Hosts: 0: all hosts', config.hosts)
+print('0: all Hosts')
 config.select_host = int(input('Please select a host: '))
 
 while True:
