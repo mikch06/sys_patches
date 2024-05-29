@@ -32,7 +32,7 @@ while True:
         if config.select_host == 0:
             print('Update check all hosts')
             for value in config.hosts.values():
-                print("Check: ", value)
+                print("\nCheck: ", value)
                 login = config.remote_user + '@' + value
                 subprocess.run(['ssh', login, 'dnf check-update'])
                 # subprocess.run(("ssh", "<REMOTE UNAME>@<REMOTE IP/HOSTNAME>", "free", "-m"))
