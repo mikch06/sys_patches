@@ -15,7 +15,7 @@ config.select_host = int(input('Please select a host: '))
 
 while True:
 
-    print('\nTask: \n1 Ping \n2 Check open updates \n3 Append updates \n4 Reboot \n5 Quit')
+    print('\nTask: \n1 Ping \n2 Check open updates \n3 Append updates \n4 Reboot \n6 Check uptime \n5 Quit')
     select_task = int(input('\n\nPlease select a task: '))
 
     def check_ping():
@@ -27,6 +27,18 @@ while True:
         else:
             print('Ping check host')
             os.system("ping -c 1 " + config.hosts[config.select_host])
+
+    def check_uptime():
+        if config.select_host == 0:
+            print('Check uptime on all hosts')
+            for value in config.hosts.values():
+                print("\nCheck: ", value)
+                login = config.remote_user + '@' + value
+                subprocess.run(['ssh', login, 'uptime'])
+        else:
+            print('\nCheck host uptime')
+            login = config.remote_user + '@' + config.hosts[config.select_host]
+            subprocess.run(['ssh', login, 'uptime'])
 
     def check_updates():
         if config.select_host == 0:
@@ -79,6 +91,10 @@ while True:
         case 4:
             print('Task: Reboot host')
             reboot_host()
+
+        case 6:
+            print('Task: Check host uptime')
+            check_uptime()            
 
         case 5:
             print("Bye!")
