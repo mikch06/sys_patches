@@ -57,7 +57,7 @@ while True:
     def install_updates():
         if config.select_host == 0:
             print('Install updates on all hosts')
-            for value in hosts.values():
+            for value in config.hosts.values():
                 print("Check: ", value)
                 login = config.remote_user + '@' + value
                 subprocess.run(['ssh', login, 'sudo dnf update -y'])
