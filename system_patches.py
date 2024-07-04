@@ -48,7 +48,6 @@ while True:
                 print("Check: ", value)
                 login = config.remote_user + '@' + value
                 subprocess.run(['ssh', login, 'dnf check-update'])
-                # subprocess.run(("ssh", "<REMOTE UNAME>@<REMOTE IP/HOSTNAME>", "free", "-m"))
         else:
             print('Update check host')
             login = config.remote_user + '@' + config.hosts[config.select_host]
