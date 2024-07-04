@@ -52,7 +52,6 @@ while True:
             print('Update check host')
             login = config.remote_user + '@' + config.hosts[config.select_host]
             subprocess.run(['ssh', login, 'dnf check-update'])
-            #os.system("ping -c 1 " + hosts[select_host])
 
     def install_updates():
         if config.select_host == 0:
