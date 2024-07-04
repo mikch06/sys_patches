@@ -40,6 +40,18 @@ while True:
             login = config.remote_user + '@' + config.hosts[config.select_host]
             subprocess.run(['ssh', login, 'uptime'])
 
+    def clear_caches():
+        if config.select_host == 0:
+            print('Clear all caches')
+            for value in config.hosts.values():
+                print("Clean cache: ", value)
+                login = config.remote_user + '@' + value
+                subprocess.run(['ssh', login, 'dnf clean all'])
+        else:
+            print('Update check host')
+            login = config.remote_user + '@' + config.hosts[config.select_host]
+            subprocess.run(['ssh', login, 'dnf clean all'])            
+
     def check_updates():
         if config.select_host == 0:
             print('Update check all hosts')
@@ -78,6 +90,10 @@ while True:
         case 1:
             print('Task: Ping check')
             check_ping()
+
+        case 0:
+            print('Task: Clear caches')
+            clear_caches()            
 
         case 2:
             print('Task: Update check')
