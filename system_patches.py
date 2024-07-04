@@ -15,7 +15,7 @@ config.select_host = int(input('Please select a host: '))
 
 while True:
 
-    print('\nTask: \n1 Ping \n2 Check open updates \n3 Append updates \n4 Reboot \n6 Check uptime \n5 Quit')
+    print('\nTask: \n1 Ping \n2 Clear caches \n3 Check open updates \n4 Append updates \n5 Reboot \n6 Check uptime \n0 Quit')
     select_task = int(input('\n\nPlease select a task: '))
 
     def check_ping():
@@ -91,19 +91,19 @@ while True:
             print('Task: Ping check')
             check_ping()
 
-        case 0:
+        case 2:
             print('Task: Clear caches')
             clear_caches()            
 
-        case 2:
+        case 3:
             print('Task: Update check')
             check_updates()
 
-        case 3:
+        case 4:
             print('Task: Install updates')
             install_updates()
 
-        case 4:
+        case 5:
             print('Task: Reboot host')
             reboot_host()
 
@@ -111,7 +111,7 @@ while True:
             print('Task: Check host uptime')
             check_uptime()            
 
-        case 5:
+        case 0:
             print("Bye!")
             quit()
 
