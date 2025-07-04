@@ -15,7 +15,7 @@ config.select_host = int(input('Please select a host: '))
 
 while True:
 
-    print('\nTask: \n1 Ping \n2 Clear caches \n3 Check open updates \n4 Append updates \n5 Reboot \n6 Check uptime \n0 Quit')
+    print('\nTask: \n1 Ping \n2 Clear caches \n3 Check open updates \n4 Append updates \n5 Reboot \n6 Check uptime \n7 Remove oldinstall \n0 Quit')
     select_task = int(input('\n\nPlease select a task: '))
 
     def check_ping():
@@ -86,6 +86,18 @@ while True:
             login = config.remote_user + '@' + config.hosts[config.select_host]
             subprocess.run(['ssh', login, 'sudo reboot'])
 
+    def remove_old():
+        if config.select_host == 0:
+            print('Install updates on all hosts')
+            for value in config.hosts.values():
+                print("Check: ", value)
+                login = config.remote_user + '@' + value
+                subprocess.run(['ssh', login, 'sudo dnf remove --oldinstallonly -y'])
+        else:
+            print('Install updates on host')
+            login = config.remote_user + '@' + config.hosts[config.select_host]
+            subprocess.run(['ssh', login, 'sudo dnf remove --oldinstallonly -y'])
+
     match select_task:
         case 1:
             print('Task: Ping check')
@@ -111,9 +123,17 @@ while True:
             print('Task: Check host uptime')
             check_uptime()            
 
+        case 7:
+            print('Task: Remove old kernels')
+            remove_old()
+
         case 0:
             print("Bye!")
             quit()
 
         case _:
             print("Choose an option.")
+
+
+
+# dnf remove --oldinstallonly -y
